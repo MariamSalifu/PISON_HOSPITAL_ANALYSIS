@@ -429,6 +429,12 @@ FROM patients p
 FULL JOIN prescriptions pr
 ON p.patient_id=pr.patient_id;
 
+--The hospital management wants to know how many appointments were completed, cancelled, rescheduled or still pending
+SELECT appointment_status, COUNT(*) AS total_appointments
+FROM appointments
+GROUP BY appointment_status
+ORDER BY total_appointments DESC;
+
 --Finance dept wants to review all billing and treatments records
 SELECT b.total_amount,
 	   b.payment_status,
